@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  streamlit-app:
+    image: python:3.9-slim # Use the official Python image
+    working_dir: /app # Set the working directory inside the container
+    volumes:
+      - ./app:/app # Mount the current directory to /app in the container
+    ports:
+      - "8501:8501" # Map port 8501 on the host to port 8501 in the container
+    command: /bin/sh -c "pip install -r requirements.txt && streamlit run Home.py --server.port=8501 --server.address=0.0.0.0"
+    # command runs pip to install dependencies and then starts the Streamlit app
